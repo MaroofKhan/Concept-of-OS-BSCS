@@ -1,0 +1,6 @@
+D:\Process Control Block\Process Control Block\bin\Debug\Process Control Block.exe.config
+D:\Process Control Block\Process Control Block\obj\Debug\Process Control Block.csprojResolveAssemblyReference.cache
+D:\Process Control Block\Process Control Block\bin\Debug\Process Control Block.exe
+D:\Process Control Block\Process Control Block\bin\Debug\Process Control Block.pdb
+D:\Process Control Block\Process Control Block\obj\Debug\Process Control Block.exe
+D:\Process Control Block\Process Control Block\obj\Debug\Process Control Block.pdb
