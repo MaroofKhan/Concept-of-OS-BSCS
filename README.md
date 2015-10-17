@@ -1,5 +1,7 @@
 # Concept-of-OS
-Contributor: Muhammad Maroof Khan \n
-
-Copyrights? \n
+Contributor: Muhammad Maroof Khan
+<br />
+<br />
+Copyrights?
+<br />
 LOL. NOEP.
