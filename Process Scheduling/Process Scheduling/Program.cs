@@ -105,9 +105,14 @@ namespace Process_Scheduling
                 });
 
                 if (arrived.Length == 0) continue;
-
-                Process infocus = arrived.First();
-                Console.WriteLine(arrived.Length);
+                
+                Process infocus = null;
+                foreach (Process process in arrived)
+                    if (!(process.executingState == ExecutingState.Finished))
+                    {
+                        infocus = process;
+                        break;
+                    }
                 foreach (Process process in processes)
                     if (process == infocus)
                         if (!(process.executingState == ExecutingState.Finished))
