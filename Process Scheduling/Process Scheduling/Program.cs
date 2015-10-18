@@ -12,7 +12,7 @@ namespace Process_Scheduling
         {
             Thread main = new Thread(3);
             main.initiateProcesses();
-            main.execute(Schedule.SJF);
+            main.execute(Schedule.HRRN);
         }
 
     }
@@ -45,6 +45,9 @@ namespace Process_Scheduling
         {
             switch (schedule)
             {
+                case Schedule.HRRN:
+                    HRRN();
+                    break;
                 case Schedule.FIFO:
                     FIFO();
                     break;
@@ -71,6 +74,40 @@ namespace Process_Scheduling
             return arrived;
         }
 
+        private bool allFinished
+        {
+            get
+            {
+                bool allFinished = true;
+                foreach (Process process in processes)
+                    if (!(process.executingState == ExecutingState.Finished))
+                        allFinished = false;
+                return allFinished;
+            }
+        }
+
+        private void HRRN()
+        {
+            for (int timeSlice = 0; true; timeSlice++)
+            {
+                Process[] arrived = arrivedProcesses(timeSlice);
+                Array.Sort(arrived, delegate(Process process, Process _process)
+                {
+                    return process.priority.CompareTo(_process.priority);
+                });
+
+                if (arrived.Length == 0) continue;
+
+                foreach (Process process in processes)
+                    if (process == arrived.First())
+                        if (!(process.executingState == ExecutingState.Finished))
+                            process.execute(process.execution, timeSlice);
+
+                if (allFinished) break;
+
+            }
+        }
+
         private void FIFO()
         {
             for (int timeSlice = 0; true; timeSlice++)
@@ -83,12 +120,7 @@ namespace Process_Scheduling
 
                 foreach (Process process in arrived)
                     if (!(process.executingState == ExecutingState.Finished))
-                        process.execute(process.execution);
-
-                bool allFinished = true;
-                foreach (Process process in processes)
-                    if (!(process.executingState == ExecutingState.Finished))
-                        allFinished = false;
+                        process.execute(process.execution, timeSlice);
 
                 if (allFinished) break;
             }
@@ -117,14 +149,9 @@ namespace Process_Scheduling
                     if (process == infocus)
                         if (!(process.executingState == ExecutingState.Finished))
                         {
-                            process.execute(process.execution);
+                            process.execute(process.execution, timeSlice);
                             timeSlice += process.execution;
                         }
-
-                bool allFinished = true;
-                foreach (Process process in processes)
-                    if (!(process.executingState == ExecutingState.Finished))
-                        allFinished = false;
 
                 if (allFinished) break;
             }
@@ -145,12 +172,7 @@ namespace Process_Scheduling
                 foreach (Process process in processes)
                     if (process == infocus)
                         if (!(process.executingState == ExecutingState.Finished))
-                            process.execute(1);
-
-                bool allFinished = true;
-                foreach (Process process in processes)
-                    if (!(process.executingState == ExecutingState.Finished))
-                        allFinished = false;
+                            process.execute(1, timeSlice);
 
                 if (allFinished) break;
             }
@@ -159,7 +181,7 @@ namespace Process_Scheduling
 
     enum Schedule
     {
-        FIFO, SJF, SRT
+        FIFO, SJF, SRT, HRRN
     }
 
     enum ArrivalState {
@@ -168,8 +190,8 @@ namespace Process_Scheduling
     }
 
     enum ExecutingState {
-        Executing,
         Waiting,
+        Executing,
         Finished
     }
 
@@ -177,6 +199,7 @@ namespace Process_Scheduling
     {
         internal string id;
         internal int arrival, execution, completed;
+        internal int _start;
         internal ExecutingState executingState;
 
         internal int remainingTime
@@ -187,8 +210,10 @@ namespace Process_Scheduling
             }
         }
 
-        internal void execute(int timeSlice)
+        internal void execute(int timeSlice, int threadTime)
         {
+            _start = ((completed == 0) ? threadTime : _start);
+            executingState = ExecutingState.Executing;
             completed += timeSlice;
             //TODO: Show Execution
             Console.WriteLine(this.id);
@@ -201,9 +226,22 @@ namespace Process_Scheduling
             return ((time < arrival) ? ArrivalState.Waiting : ArrivalState.Arrived);
         }
         
-        internal int wait(int start)
+        internal int wait
         {
-            return arrival - (start - execution);
+            get
+            {
+                if (executingState == ExecutingState.Waiting) return -1;
+                return _start - arrival;
+            }
+        }
+
+        internal float priority
+        {
+            get
+            {
+                if (wait < 0) return -1;
+                return (((float)(wait + execution)) / (float)(execution));
+            }
         }
 
         internal int finish(int start)
@@ -222,6 +260,7 @@ namespace Process_Scheduling
             this.arrival = arrival;
             this.execution = execution;
             this.completed = 0;
+            this.executingState = ExecutingState.Waiting;
         }
 
         public int CompareTo(object obj)
