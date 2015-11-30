@@ -1,0 +1,6 @@
+c:\users\maroof khan\documents\visual studio 2013\Projects\ProcessControlBlock\ProcessControlBlock\bin\Debug\ProcessControlBlock.exe.config
+c:\users\maroof khan\documents\visual studio 2013\Projects\ProcessControlBlock\ProcessControlBlock\bin\Debug\ProcessControlBlock.exe
+c:\users\maroof khan\documents\visual studio 2013\Projects\ProcessControlBlock\ProcessControlBlock\bin\Debug\ProcessControlBlock.pdb
+c:\users\maroof khan\documents\visual studio 2013\Projects\ProcessControlBlock\ProcessControlBlock\obj\Debug\ProcessControlBlock.csprojResolveAssemblyReference.cache
+c:\users\maroof khan\documents\visual studio 2013\Projects\ProcessControlBlock\ProcessControlBlock\obj\Debug\ProcessControlBlock.exe
+c:\users\maroof khan\documents\visual studio 2013\Projects\ProcessControlBlock\ProcessControlBlock\obj\Debug\ProcessControlBlock.pdb

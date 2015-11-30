@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Process Control Block")]
+[assembly: AssemblyTitle("ProcessControlBlock")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Process Control Block")]
+[assembly: AssemblyProduct("ProcessControlBlock")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("913243b4-c414-417d-8d50-85ee53ec3d1c")]
+[assembly: Guid("1f793b62-a2fc-4921-8191-0e797a0e4710")]
 
 // Version information for an assembly consists of the following four values:
 //

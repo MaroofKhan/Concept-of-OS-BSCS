@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BAF72B72-9810-47F7-A173-3DDA467B780C}</ProjectGuid>
+    <ProjectGuid>{03D73E9D-A323-413D-93B2-D05EF09C8437}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Process_Control_Block</RootNamespace>
-    <AssemblyName>Process Control Block</AssemblyName>
+    <RootNamespace>ProcessControlBlock</RootNamespace>
+    <AssemblyName>ProcessControlBlock</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
